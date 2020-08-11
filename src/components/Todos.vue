@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>To Do List</div>
+    <h2>To Do List</h2>
     <div class="todos">
       <div v-for="todo in allTodos" :key="todo.id" class="todo">{{todo.title}}</div>
     </div>
