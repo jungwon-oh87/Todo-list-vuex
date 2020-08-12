@@ -2,7 +2,10 @@
   <div>
     <h2>To Do List</h2>
     <div class="todos">
-      <div v-for="todo in allTodos" :key="todo.id" class="todo">{{todo.title}}</div>
+      <div v-for="todo in allTodos" :key="todo.id" class="todo">
+        {{todo.title}}
+        <i class="fa fa-trash"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -31,10 +34,18 @@ export default {
 .todo {
   border: 1px solid #ccc;
   background: #41b883;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 5px;
   text-align: center;
   position: relative;
+  cursor: pointer;
+}
+i {
+  position: absolute;
+  width: 20px;
+  /* height: 10px; */
+  right: 10px;
+  color: #fff;
   cursor: pointer;
 }
 </style>
