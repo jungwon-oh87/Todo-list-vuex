@@ -11,7 +11,13 @@
       </span>
     </div>
     <div class="todos">
-      <div @dblclick="onDblClick(todo)" v-for="todo in allTodos" :key="todo.id" class="todo">
+      <div
+        @dblclick="onDblClick(todo)"
+        v-for="todo in allTodos"
+        :key="todo.id"
+        class="todo"
+        v-bind:class="{'is-completed':todo.completed}"
+      >
         {{todo.title}}
         <i @click="deleteTodo(todo.id)" class="fa fa-trash"></i>
       </div>
@@ -26,6 +32,15 @@ export default {
   name: "todos",
   methods: {
     ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
+    onDblClick(todo) {
+      console.log("onDblClick called");
+      const updTodo = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed,
+      };
+      this.updateTodo(updTodo);
+    },
   },
   computed: mapGetters(["allTodos"]),
   created() {
@@ -83,5 +98,10 @@ i {
   .todos {
     grid-template-columns: 1fr;
   }
+}
+
+.is-completed {
+  background: #35495e;
+  color: #fff;
 }
 </style>
